@@ -41,21 +41,19 @@ public class PriceReductionRepository implements IPriceReductionRepository {
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<RestAPIResponse> entity = new HttpEntity<RestAPIResponse>(headers);
 		try {
+			System.out.println("URL: " + buildRestURL(categoryId));
 			return restTemplate.exchange(buildRestURL(categoryId), HttpMethod.GET, entity, RestAPIResponse.class)
 					.getBody();
 		} catch (HttpClientErrorException | HttpServerErrorException errorException) {
-			logger.error(String.format("%s %s", "Provided product API URL is down or temporary unavaliable or Syntax error with product API URL", errorException.getStackTrace()));
+			logger.error(String.format("%s %s",
+					"Provided product API URL is down or temporary unavaliable or Syntax error with product API URL",
+					errorException.getStackTrace()));
 			throw new RestClientCommunicationException(
 					"Provided product API URL is down or temporary unavaliable or Syntax error with product API URL");
 		}
 	}
 
 	private String buildRestURL(int categoryId) {
-		StringBuilder builder = new StringBuilder();
-		builder.append(restUrlPrefix);
-		builder.append(categoryId);
-		builder.append(restUrlValue);
-		builder.append(restUrlkey);
-		return builder.toString();
+		return String.format("%s%s%s %s", restUrlPrefix, categoryId, restUrlValue, restUrlkey);
 	}
 }
