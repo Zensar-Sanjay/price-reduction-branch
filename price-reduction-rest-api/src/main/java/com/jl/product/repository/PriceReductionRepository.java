@@ -41,7 +41,6 @@ public class PriceReductionRepository implements IPriceReductionRepository {
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<RestAPIResponse> entity = new HttpEntity<RestAPIResponse>(headers);
 		try {
-			System.out.println("URL: " + buildRestURL(categoryId));
 			return restTemplate.exchange(buildRestURL(categoryId), HttpMethod.GET, entity, RestAPIResponse.class)
 					.getBody();
 		} catch (HttpClientErrorException | HttpServerErrorException errorException) {
@@ -54,6 +53,6 @@ public class PriceReductionRepository implements IPriceReductionRepository {
 	}
 
 	private String buildRestURL(int categoryId) {
-		return String.format("%s%s%s %s", restUrlPrefix, categoryId, restUrlValue, restUrlkey);
+		return String.format("%s%s%s%s", restUrlPrefix, categoryId, restUrlValue, restUrlkey);
 	}
 }

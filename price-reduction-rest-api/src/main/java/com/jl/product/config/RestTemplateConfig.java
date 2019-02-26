@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-@ComponentScan("com.zensar")
+@ComponentScan("com.jl")
 public class RestTemplateConfig {
 
 	@Bean
