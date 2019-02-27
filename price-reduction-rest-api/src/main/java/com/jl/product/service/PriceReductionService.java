@@ -34,11 +34,11 @@ public class PriceReductionService implements IPriceReductionService {
 
 	private List<IProductFilter> createFilters() {
 		IProductFilter priceLableFilter = new PriceLabelFilter();
-		IProductFilter pricereductionFilter = new PriceReductionFilter();
+		IProductFilter priceReductionFilter = new PriceReductionFilter();
 
 		List<IProductFilter> filters = new ArrayList<IProductFilter>();
 
-		filters.add(pricereductionFilter);
+		filters.add(priceReductionFilter);
 		filters.add(priceLableFilter);
 		return filters;
 	}
